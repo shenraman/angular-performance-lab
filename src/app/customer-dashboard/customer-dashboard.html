@@ -1,0 +1,60 @@
+<div class="dashboard">
+  <header class="dashboard-header">
+    <div>
+      <h1>Customer Performance Lab</h1>
+      <p>Angular performance troubleshooting demonstration</p>
+    </div>
+  </header>
+
+  <section class="search-section">
+    <label for="customer-search">Search customers</label>
+
+    <input
+      id="customer-search"
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search by name or country..."
+    />
+  </section>
+
+  <section class="summary">
+    <div class="summary-card">
+      <span>Customers</span>
+      <strong>{{ filteredCustomers.length }}</strong>
+    </div>
+
+    <div class="summary-card">
+      <span>Total Revenue</span>
+      <strong>{{ totalRevenue | currency }}</strong>
+    </div>
+  </section>
+<section class="performance-monitor">
+  <h2>Performance Monitor</h2>
+
+  <div class="performance-metrics">
+    <div>
+      <span>Filter calculations</span>
+      <strong>{{ filterCalculationCount }}</strong>
+    </div>
+
+    <div>
+      <span>Revenue calculations</span>
+      <strong>{{ revenueCalculationCount }}</strong>
+    </div>
+  </div>
+</section>
+  <section class="customer-list">
+    <h2>Customers</h2>
+
+    @for (customer of filteredCustomers; track customer.id) {
+      <div class="customer-row">
+        <div>
+          <strong>{{ customer.name }}</strong>
+          <span>{{ customer.country }}</span>
+        </div>
+
+        <strong>{{ customer.revenue | currency }}</strong>
+      </div>
+    }
+  </section>
+</div>
