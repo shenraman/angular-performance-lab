@@ -9,23 +9,24 @@
   <section class="search-section">
     <label for="customer-search">Search customers</label>
 
-    <input
-      id="customer-search"
-      type="text"
-      [(ngModel)]="searchText"
-      placeholder="Search by name or country..."
-    />
+   <input
+  id="customer-search"
+  type="text"
+  [ngModel]="searchText()"
+  (ngModelChange)="searchText.set($event)"
+  placeholder="Search by name or country..."
+/>
   </section>
 
   <section class="summary">
     <div class="summary-card">
       <span>Customers</span>
-      <strong>{{ filteredCustomers.length }}</strong>
+     <strong>{{ filteredCustomers().length }}</strong>
     </div>
 
     <div class="summary-card">
       <span>Total Revenue</span>
-      <strong>{{ totalRevenue | currency }}</strong>
+      <strong>{{ totalRevenue() | currency }}</strong>
     </div>
   </section>
 <section class="performance-monitor">
@@ -46,7 +47,7 @@
   <section class="customer-list">
     <h2>Customers</h2>
 
-    @for (customer of filteredCustomers; track customer.id) {
+   @for (customer of filteredCustomers(); track customer.id) {
       <div class="customer-row">
         <div>
           <strong>{{ customer.name }}</strong>
